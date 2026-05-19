@@ -10,10 +10,13 @@
     "dev": "shadow-cljs watch app",
     "build": "shadow-cljs release app",
     "release": "shadow-cljs release app",
-    "clean": "rm -rf public/js .shadow-cljs"
+    "clean": "rm -rf public/js .shadow-cljs",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
   },
   "devDependencies": {
-    "shadow-cljs": "^3.4.11"
+    "shadow-cljs": "^3.4.11",
+    "wrangler": "^4.93.0"
   },
   "dependencies": {
     "katex": "^0.16.47",
