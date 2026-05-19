@@ -1,5 +1,3 @@
-# SPA fallback — all routes serve index.html
-# Hash-based routing handles the rest client-side
-/lesson/*   /index.html   200
-/quiz/*     /index.html   200
-/grade/*    /index.html   200
+# Hash-based routing — no server-side redirects needed.
+# All navigation (/#/lesson/…, /#/quiz/…, etc.) is handled
+# entirely client-side by Reitit's hash router.
