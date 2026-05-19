@@ -1,0 +1,5 @@
+# SPA fallback — all routes serve index.html
+# Hash-based routing handles the rest client-side
+/lesson/*   /index.html   200
+/quiz/*     /index.html   200
+/grade/*    /index.html   200

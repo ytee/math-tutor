@@ -1,0 +1,42 @@
+# Option B — GitHub Actions deploy to Cloudflare Pages
+#
+# Currently NOT active (Option A uses direct Git integration instead).
+# To activate:
+#   1. Rename this file to deploy.yml
+#   2. Add secrets to GitHub repo settings:
+#      CF_API_TOKEN   → Cloudflare API token (Edit Cloudflare Pages template)
+#      CF_ACCOUNT_ID  → Cloudflare account ID (dashboard right sidebar)
+#   3. Remove or rename deploy.yml.disabled
+
+name: Build & Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build ClojureScript
+        run: npm run build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          projectName: math-tutor
+          directory: public
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
