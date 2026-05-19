@@ -1,22 +1,22 @@
 #!/bin/bash
 set -e
 
-echo "→ Installing Java 21..."
-apt-get install -y openjdk-21-jdk-headless 2>/dev/null || true
+JDK_DIR="$HOME/.jdk"
 
-echo "→ Locating Java..."
-JAVA_BIN=$(which java 2>/dev/null || find /usr -name "java" -type f 2>/dev/null | head -1)
-if [ -z "$JAVA_BIN" ]; then
-  echo "ERROR: java not found after install"
-  find /usr/lib/jvm -name "java" 2>/dev/null || echo "No JVM found"
-  exit 1
+if [ ! -f "$JDK_DIR/bin/java" ]; then
+  echo "→ Downloading JDK 21..."
+  mkdir -p "$JDK_DIR"
+  curl -sL "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.5%2B11/OpenJDK21U-jdk_x64_linux_hotspot_21.0.5_11.tar.gz" \
+    | tar -xz -C "$JDK_DIR" --strip-components=1
+  echo "→ JDK downloaded."
+else
+  echo "→ JDK already cached."
 fi
 
-export JAVA_HOME=$(dirname $(dirname $(readlink -f $JAVA_BIN)))
-export PATH=$JAVA_HOME/bin:$PATH
+export JAVA_HOME="$JDK_DIR"
+export PATH="$JAVA_HOME/bin:$PATH"
 
-echo "→ Java found at: $JAVA_BIN"
-echo "→ JAVA_HOME: $JAVA_HOME"
+echo "→ Java version:"
 java -version
 
 echo "→ Building ClojureScript..."
