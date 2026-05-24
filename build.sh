@@ -19,6 +19,15 @@ export PATH="$JAVA_HOME/bin:$PATH"
 echo "→ Java version:"
 java -version
 
+
+echo "→ Checking compiled Grade 1 Addition data..."
+test -f public/compiled/grade1-addition-demo.json
+
+echo "→ Building ClojureScript..."
+npx shadow-cljs release app
+
+echo "→ Done. Output in public/"
+
 echo "→ Building ClojureScript..."
 npx shadow-cljs release app
 
