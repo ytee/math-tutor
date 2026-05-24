@@ -29,6 +29,12 @@
                 :error   (.-message err)
                 :loading false)))))
 
+(defn load-lesson!
+  "Temporary compatibility wrapper for old quiz.cljs.
+   For the Grade 1 demo, always loads the compiled addition demo JSON."
+  [_grade _id]
+  (load-grade1-addition-demo!))                
+
 ;; ── Lesson block renderers ───────────────────────────────────────────────────
 
 (defn explain-block [block]
