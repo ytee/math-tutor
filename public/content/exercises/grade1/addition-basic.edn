@@ -1,0 +1,16 @@
+{:exercise-set/id :exercise-set/grade1.addition.basic
+
+ :skills
+ #{:skill/arithmetic.add-single-digit-numbers}
+
+ :items
+ [{:question "1 + 1"
+   :answer 2}
+
+  {:question "2 + 1"
+   :answer 3}
+
+  {:question "3 + 2"
+   :answer 5}]}
+
+   

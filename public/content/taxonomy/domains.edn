@@ -1,0 +1,31 @@
+[{:domain/id :arithmetic
+  :domain/name "Arithmetic"
+  :domain/description "Basic numerical operations and computation"}
+
+ {:domain/id :fractions
+  :domain/name "Fractions"
+  :domain/description "Fraction representation and operations"}
+
+ {:domain/id :number-theory
+  :domain/name "Number Theory"
+  :domain/description "Factors, multiples, primes, divisibility"}
+
+ {:domain/id :measurement
+  :domain/name "Measurement"
+  :domain/description "Length, area, volume, time and units"}
+
+ {:domain/id :geometry
+  :domain/name "Geometry"
+  :domain/description "Shapes, lines, angles and spatial reasoning"}
+
+ {:domain/id :data
+  :domain/name "Data Handling"
+  :domain/description "Tables, graphs and data interpretation"}
+
+ {:domain/id :patterns
+  :domain/name "Patterns and Algebraic Thinking"
+  :domain/description "Sequences, patterns and rule discovery"}
+
+ {:domain/id :construction
+  :domain/name "Geometric Construction"
+  :domain/description "Compass and ruler constructions"}]

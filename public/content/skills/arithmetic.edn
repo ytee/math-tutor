@@ -1,0 +1,20 @@
+[{:skill/id :skill/arithmetic.count-objects
+  :skill/name "Count Objects"
+  :skill/concepts #{:concept/counting :concept/number}}
+
+ {:skill/id :skill/arithmetic.add-single-digit-numbers
+  :skill/name "Add Single Digit Numbers"
+  :skill/concepts #{:concept/addition :concept/number}
+  :skill/requires #{:skill/arithmetic.count-objects}}
+
+ {:skill/id :skill/arithmetic.add-using-pictures
+  :skill/name "Add Using Pictures"
+  :skill/concepts #{:concept/addition}
+  :skill/requires #{:skill/arithmetic.count-objects}}
+
+ {:skill/id :skill/arithmetic.add-using-number-line
+  :skill/name "Add Using Number Line"
+  :skill/concepts #{:concept/addition}
+  :skill/requires #{:skill/arithmetic.add-single-digit-numbers}}]
+
+  

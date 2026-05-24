@@ -1,0 +1,26 @@
+{:lesson/id :lesson/grade1.addition.introduction
+
+ :title "Introduction to Addition"
+
+ :domain :arithmetic
+
+ :concepts
+ #{:concept/addition
+   :concept/counting}
+
+ :skills
+ #{:skill/arithmetic.count-objects
+   :skill/arithmetic.add-single-digit-numbers}
+
+ :blocks
+ [{:type :text
+   :content "Addition means putting things together."}
+
+  {:type :example
+   :question "What is 2 + 1?"
+   :answer "3"}
+
+  {:type :exercise-ref
+   :exercise-set :exercise-set/grade1.addition.basic}]}
+
+   
