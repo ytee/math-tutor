@@ -1,0 +1,31 @@
+[ {
+  "skill/requires" : [ ],
+  "skill/difficulty" : "easy",
+  "skill/description" : "Count objects in a small group.",
+  "skill/domain" : "arithmetic",
+  "skill/grade-level" : 1,
+  "skill/concepts" : [ "concept/counting", "concept/number" ],
+  "skill/id" : "skill/arithmetic.count-objects",
+  "skill/name" : "Count Objects",
+  "skill/assessable?" : true
+}, {
+  "skill/requires" : [ "skill/arithmetic.count-objects" ],
+  "skill/difficulty" : "easy",
+  "skill/description" : "Add two small groups by looking at objects or pictures.",
+  "skill/domain" : "arithmetic",
+  "skill/grade-level" : 1,
+  "skill/concepts" : [ "concept/addition", "concept/counting", "concept/number" ],
+  "skill/id" : "skill/arithmetic.add-using-pictures",
+  "skill/name" : "Add Using Pictures",
+  "skill/assessable?" : true
+}, {
+  "skill/requires" : [ "skill/arithmetic.count-objects", "skill/arithmetic.add-using-pictures" ],
+  "skill/difficulty" : "easy",
+  "skill/description" : "Add two numbers where the total is not more than 10.",
+  "skill/domain" : "arithmetic",
+  "skill/grade-level" : 1,
+  "skill/concepts" : [ "concept/addition", "concept/number" ],
+  "skill/id" : "skill/arithmetic.add-within-10",
+  "skill/name" : "Add Within 10",
+  "skill/assessable?" : true
+} ]

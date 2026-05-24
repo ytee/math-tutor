@@ -1,16 +1,33 @@
 {:exercise-set/id :exercise-set/grade1.addition.basic
+ :exercise-set/title "Basic Addition Within 10"
+ :exercise-set/grade-level 1
 
- :skills
- #{:skill/arithmetic.add-single-digit-numbers}
+ :exercise-set/skills #{:skill/arithmetic.add-using-pictures
+                        :skill/arithmetic.add-within-10}
 
- :items
- [{:question "1 + 1"
-   :answer 2}
+ :exercise-set/items
+ [{:exercise/id :exercise/grade1.addition.basic.001
+   :exercise/type :numeric-answer
+   :exercise/prompt "1 + 1 = ?"
+   :exercise/answer 2
+   :exercise/explanation "One and one make two."}
 
-  {:question "2 + 1"
-   :answer 3}
+  {:exercise/id :exercise/grade1.addition.basic.002
+   :exercise/type :numeric-answer
+   :exercise/prompt "2 + 1 = ?"
+   :exercise/answer 3
+   :exercise/explanation "Two and one more make three."}
 
-  {:question "3 + 2"
-   :answer 5}]}
+  {:exercise/id :exercise/grade1.addition.basic.003
+   :exercise/type :numeric-answer
+   :exercise/prompt "3 + 2 = ?"
+   :exercise/answer 5
+   :exercise/explanation "Three and two more make five."}
 
-   
+  {:exercise/id :exercise/grade1.addition.basic.004
+   :exercise/type :count-and-add
+   :exercise/prompt "There are 2 stars and 3 more stars. How many stars are there?"
+   :exercise/groups [2 3]
+   :exercise/object :star
+   :exercise/answer 5
+   :exercise/explanation "Count all the stars: 1, 2, 3, 4, 5."}]}
