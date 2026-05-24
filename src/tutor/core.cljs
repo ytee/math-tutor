@@ -9,12 +9,22 @@
             [tutor.views.quiz       :refer [quiz-page]]))
 
 (defn current-page []
-  (let [route-name (get-in @app-state [:route :data :name])]
+  (let [route      (:route @app-state)
+        route-name (get-in route [:data :name])
+        params     (:path-params route)]
     (case route-name
-      :home   [home-page]
-      :grade  [grade-page]
-      :lesson [lesson-page]
-      :quiz   [quiz-page]
+      :home
+      [home-page]
+
+      :grade
+      [grade-page (:grade params)]
+
+      :lesson
+      [lesson-page (:grade params) (:id params)]
+
+      :quiz
+      [quiz-page (:grade params) (:id params)]
+
       [:div.page [:p "Page not found."]])))
 
 (defn app-root []
