@@ -23,8 +23,10 @@
     (rf/router routes)
     (fn [match _history]
       (swap! app-state assoc
-             :route   match
-             :lesson  nil      ;; clear stale lesson on navigation
-             :answers {}
-             :error   nil))
+             :route         match
+             :lesson        nil      ;; clear stale lesson on navigation
+             :exercise-sets []
+             :answers       {}
+             :results       {}
+             :error         nil))
     {:use-fragment true}))    ;; #/lesson/... — works on all static hosts
