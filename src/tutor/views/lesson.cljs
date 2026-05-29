@@ -223,5 +223,5 @@
       (let [key (str grade "/" id)]
         (when (not= @loaded-key key)
           (reset! loaded-key key)
-          (load-lesson! grade id)))
+          (js/setTimeout #(load-lesson! grade id) 0)))
       [lesson-content])))
