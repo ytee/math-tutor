@@ -19,8 +19,13 @@ This is a living document that captures the requirements, architecture, and deta
 
 In embedded systems, you have your hardware (MCU), firmware (your code), and peripherals. In web development, the architecture is split across the network.
 
-### The "Backend": Cloudflare (Static File Host)
-For this project, there is no active backend logic. Instead, Cloudflare acts as a highly distributed file server. Think of it like a remote Read-Only Memory (ROM) chip. When a user requests a URL, Cloudflare simply serves static files (HTML, JS, JSON) over HTTP.
+### The "Backend": Cloudflare Pages (Edge Delivery)
+For this project, there is no active backend logic (no SQL databases, no running Node.js servers handling API calls). Instead, Cloudflare Pages acts as a highly distributed, ultra-fast file server. 
+
+Think of Cloudflare as a massive, globally distributed Read-Only Memory (ROM) chip.
+- **Objective:** To serve the application's compiled assets (HTML, JavaScript, and JSON content) to the user's browser with the absolute minimum latency possible.
+- **How it Works:** When we deploy to Cloudflare Pages, our files are copied to hundreds of "edge" servers located in cities all around the world. When a user in Tokyo requests the site, they download the files from a server in Tokyo, not a centralized server in New York. This makes the initial application boot time virtually instantaneous.
+- **Setup & Configuration:** The deployment behavior is governed by the `wrangler.jsonc` file. This tells the Cloudflare CLI tool (`wrangler`) which directory contains the final build artifacts (in our case, the `public` directory) and maps the domain routing.
 
 ### The "Frontend": The Browser Engine
 The browser is the operating system where your firmware runs. It provides the UI framework (the Document Object Model, or DOM) and a JavaScript engine (V8) to execute your code. Your application is a **Single Page Application (SPA)**. This means Cloudflare serves a single `index.html` file containing an empty `<div>`, and then your JavaScript takes over, continuously rewriting that `<div>` to show different pages without ever reloading the browser window.
@@ -35,7 +40,14 @@ To bridge the gap between how we *write* content and how the browser *consumes* 
 
 ## 3. Detailed Design: Web & Clojure Concepts
 
-This section covers the core technologies used to write the firmware for the browser.
+This section covers the core technologies used to write the firmware for the browser and the infrastructure serving it.
+
+### Cloudflare Pages: Deployment Mechanics
+When you push code to GitHub (or run `wrangler deploy`), a build pipeline is triggered:
+1. The ClojureScript code is compiled via `shadow-cljs` into `public/js/main.js`.
+2. The `build.clj` script compiles the content into JSON files in `public/compiled/`.
+3. The entire `public` folder is uploaded to Cloudflare.
+4. **Caching:** Because these are static files, Cloudflare aggressively caches them. If you update the content, Cloudflare invalidates the cache globally so the next user gets the fresh JSON. This architecture eliminates the need to pay for or maintain a server that just sits idle 99% of the time. It is serverless.
 
 ### ClojureScript (The Language)
 ClojureScript is a functional Lisp dialect that compiles into JavaScript.
@@ -63,7 +75,7 @@ When you navigate to a URL like `#/lesson/grade1/addition`, the `#` (hash) ensur
 Let's trace how the code executes from boot to rendering a lesson.
 
 ### 1. Boot sequence (`src/tutor/core.cljs`)
-When `main.js` is loaded by the browser, it calls the `init` function.
+When `main.js` is loaded by the browser from Cloudflare, it calls the `init` function.
 - It initializes the router: `(router/init-router!)`.
 - It tells Reagent to mount the root UI component onto the HTML DOM: `(rdom/render [app] (js/document.getElementById "app"))`.
 
@@ -84,3 +96,48 @@ The function `store-compiled-bundle!` is called. This function uses `swap!` to i
 
 ### 5. Reactive Re-render
 Because `app-state` is a Reagent atom, the `swap!` call acts as an interrupt. Reagent notices the state change, immediately re-executes the `lesson-page` UI function, and because `:loading` is now false and `:lesson` contains data, it generates the HTML for the actual math lesson (headers, text, math equations, quizzes) and paints it to the screen.
+
+---
+
+## 5. Adding New Content (Authoring Guide)
+
+The application content is statically compiled from EDN files in `public/content/`. **Whenever you add a new entity, you must update both the `.edn` content files AND the compiler script (`compiler/build.clj`).**
+
+### Adding a New Domain
+1. Open `public/content/taxonomy/domains.edn`.
+2. Add a new map to the vector (e.g., `{:domain/id :domain/geometry :domain/title "Geometry" ...}`).
+3. The compiler automatically reads this file, so no changes to `build.clj` are required for domains unless you create a separate file.
+
+### Adding a New Concept
+1. Open or create the appropriate concept file in `public/content/concepts/` (e.g., `geometry.edn`).
+2. Add the concept map (e.g., `{:concept/id :concept/shapes ...}`).
+3. **Important:** If you created a *new* file (e.g. `geometry.edn`), you must add a `read-edn` call for it in `compiler/build.clj` inside the `build!` function and combine it with the existing `concepts` vector.
+
+### Adding a New Skill
+1. Open or create the skill file in `public/content/skills/` (e.g., `geometry.edn`).
+2. Define the skill map mapping to the corresponding concepts.
+3. Similar to concepts, if it's a new file, update `compiler/build.clj` to read and combine it.
+
+### Adding a New Lesson
+1. Create a new directory for the grade if it doesn't exist (e.g., `public/content/lessons/grade2/`).
+2. Create the lesson EDN file (e.g., `geometry-intro.edn`). Follow the schema with `:lesson/id`, `:lesson/title`, and `:lesson/blocks`.
+3. **Compiler Update:** You *must* update `compiler/build.clj` to read this new file. In the `build!` function, find the `lessons` binding and add your file to it. For example:
+   ```clojure
+   lessons (into []
+                 (concat
+                  (ensure-vector (read-edn "public/content/lessons/grade1/addition-intro.edn"))
+                  (ensure-vector (read-edn "public/content/lessons/grade2/geometry-intro.edn"))))
+   ```
+
+### Adding a New Exercise Set
+1. Create the exercise file in `public/content/exercises/<grade>/<topic>.edn` (e.g., `public/content/exercises/grade2/shapes-basic.edn`).
+2. Define the `{:exercise-set/id ... :exercise-set/exercises [...]}` map.
+3. **Compiler Update:** Just like lessons, update `compiler/build.clj` in the `exercise-sets` binding to read your new file and concatenate it to the global list of exercise sets.
+4. **Linking:** Make sure your lesson references the exercise set ID in a `:practice-ref` block.
+
+### Adding a New Grade
+To support a completely new grade:
+1. Create the respective directories for lessons and exercises (`public/content/lessons/<grade>/` and `public/content/exercises/<grade>/`).
+2. Add your content there.
+3. Update `build.clj` to parse the new files.
+4. Update the frontend Home Page (`src/tutor/views/home.cljs`) to actually render a card or a link to the new grade so users can navigate to it.
