@@ -138,23 +138,32 @@
        (:exercise-set/skills exercise-set)
        skill-ids))))
 
+(defn read-all-edn [dir-path id-key]
+  (let [dir (clojure.java.io/file dir-path)]
+    (if (.exists dir)
+      (->> (file-seq dir)
+           (filter #(.isFile %))
+           (filter #(clojure.string/ends-with? (.getName %) ".edn"))
+           (mapcat #(ensure-vector (read-edn (.getPath %))))
+           (filter #(contains? % id-key))
+           (into []))
+      [])))
+
 (defn build! []
   (let [domains
-        (read-edn "public/content/taxonomy/domains.edn")
+        (read-all-edn "public/content/taxonomy" :domain/id)
 
         concepts
-        (read-edn "public/content/concepts/arithmetic.edn")
+        (read-all-edn "public/content/concepts" :concept/id)
 
         skills
-        (read-edn "public/content/skills/arithmetic.edn")
+        (read-all-edn "public/content/skills" :skill/id)
 
         lessons
-        (ensure-vector
-         (read-edn "public/content/lessons/grade1/addition-intro.edn"))
+        (read-all-edn "public/content/lessons" :lesson/id)
 
         exercise-sets
-        (ensure-vector
-         (read-edn "public/content/exercises/grade1/addition-basic.edn"))
+        (read-all-edn "public/content/exercises" :exercise-set/id)
 
         data
         {:domains domains
@@ -183,3 +192,6 @@
 
 (defn -main [& _args]
   (build!))
+
+;; Execute when run as a script
+(build!)

@@ -141,3 +141,57 @@ To support a completely new grade:
 2. Add your content there.
 3. Update `build.clj` to parse the new files.
 4. Update the frontend Home Page (`src/tutor/views/home.cljs`) to actually render a card or a link to the new grade so users can navigate to it.
+---
+
+## 6. The Markdown Ingestion Tool (PDF/MD -> EDN)
+
+Writing strict EDN by hand can be tedious. To speed up content authoring, we have built a **Strict Markdown Parser** (`compiler/ingest.clj`). You can write your lessons, concepts, and skills in a simplified Markdown format, and the compiler will automatically convert them to the strict EDN schema.
+
+### How to Use It
+1. Write your content in a `.md` file using the Strict Markdown Schema (see below).
+2. Run the ingestion script:
+   ```bash
+   clojure -M compiler/ingest.clj path/to/your/file.md
+   ```
+3. The script will parse the Markdown, automatically detect the entity type (Lesson, Concept, etc.), generate the EDN file, and place it in the correct directory (e.g., `public/content/lessons/grade1/`).
+4. **Note:** Because `build.clj` has been refactored to automatically scan directories, you no longer need to manually register new files in the compiler! Just run `clojure -M compiler/build.clj` to bundle your newly ingested files.
+
+### The Strict Markdown Schema
+
+The Markdown file is divided into two parts separated by `---`:
+1. **Frontmatter:** A `key: value` block at the top containing metadata (like IDs, titles, and links to skills/concepts).
+2. **Blocks:** Separated by `# ` headers. Each block represents an atomic piece of the lesson (explain, example, practice).
+
+#### Example: A Lesson File (`addition.md`)
+```markdown
+type: lesson
+id: :lesson/grade1.addition.advanced
+title: "Advanced Addition"
+grade-level: 1
+domain: :arithmetic
+concepts: #{:concept/addition}
+skills: #{:skill/arithmetic.add-within-20}
+---
+# What is carrying over?
+type: :explain
+When you add 8 and 4, you get 12. You carry the 1 to the tens place.
+
+# Example 1
+type: :example
+prompt: "8 + 4 = ?"
+expression: "8 + 4 = 12"
+answer: 12
+
+# Practice Time
+type: :practice-ref
+exercise-set-id: :exercise-set/grade1.addition.advanced
+```
+
+### Parsing Rules
+- **Keys:** Keys before the colon (`:`) are automatically namespaced based on the `type` defined at the very top. (e.g., `title: "..."` inside a lesson becomes `:lesson/title "..."`).
+- **Values:** Values are parsed using Clojure's EDN reader. This means you must use strict EDN types:
+  - Strings: `"Hello"`
+  - Keywords: `:concept/addition`
+  - Sets: `#{:skill/one :skill/two}`
+  - Numbers: `42`
+- **Body Text:** Any text inside a block that does not have a `key:` prefix is automatically slurped into the `:block/body` attribute.
