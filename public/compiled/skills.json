@@ -28,4 +28,24 @@
   "skill/id" : "skill/arithmetic.add-within-10",
   "skill/name" : "Add Within 10",
   "skill/assessable?" : true
+}, {
+  "skill/id" : "skill/patterns.identify-rule",
+  "skill/domain" : "patterns",
+  "skill/name" : "Identify Pattern Rules",
+  "skill/description" : "Determine the mathematical rule that generates a sequence."
+}, {
+  "skill/id" : "skill/patterns.visualize-numbers",
+  "skill/domain" : "patterns",
+  "skill/name" : "Visualize Number Sequences",
+  "skill/description" : "Translating numeric sequences into geometric shapes like grids and triangles."
+}, {
+  "skill/id" : "skill/patterns.relate-sequences",
+  "skill/domain" : "patterns",
+  "skill/name" : "Relate Sequences",
+  "skill/description" : "Understand how combining sequences (like adding odd numbers) creates new sequences (like squares)."
+}, {
+  "skill/id" : "skill/patterns.shape-properties",
+  "skill/domain" : "patterns",
+  "skill/name" : "Analyze Shape Properties",
+  "skill/description" : "Count sides or components of shapes to find mathematical patterns."
 } ]

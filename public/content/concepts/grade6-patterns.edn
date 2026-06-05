@@ -1,0 +1,14 @@
+[
+  #:concept{:id :concept/number-sequence,
+            :domain :patterns,
+            :name "Number Sequences",
+            :description "A sequence of numbers following a specific mathematical rule."}
+  #:concept{:id :concept/geometric-numbers,
+            :domain :patterns,
+            :name "Geometric Numbers",
+            :description "Numbers that can be arranged in geometric shapes (Triangular, Square)."}
+  #:concept{:id :concept/shape-sequence,
+            :domain :patterns,
+            :name "Shape Sequences",
+            :description "Sequences where shapes follow a geometric pattern or rule."}
+]

@@ -1,0 +1,30 @@
+#:exercise-set{:id :exercise-set/grade6.patterns.shapes,
+               :title "Patterns in Shapes",
+               :grade-level 6,
+               :domain :patterns,
+               :skills #{:skill/patterns.shape-properties},
+               :blocks
+               [#:block{:title "Exercise 1",
+                        :type :multiple-choice,
+                        :prompt
+                        "How many sides does a Regular Nonagon have?",
+                        :options ["7" "8" "9" "10"],
+                        :answer "9"}
+                #:block{:title "Exercise 2",
+                        :type :multiple-choice,
+                        :prompt
+                        "The shape sequence of Regular Polygons starting with a Triangle gives what number sequence for the number of sides?",
+                        :options
+                        ["1, 2, 3, 4..."
+                         "3, 4, 5, 6, 7..."
+                         "2, 4, 6, 8..."],
+                        :answer "3, 4, 5, 6, 7..."}
+                #:block{:title "Exercise 3",
+                        :type :multiple-choice,
+                        :prompt
+                        "To get from one shape to the next in the Koch Snowflake sequence, what do you replace each line segment with?",
+                        :options
+                        ["A square"
+                         "A speed bump shape (a triangle)"
+                         "A circle"],
+                        :answer "A speed bump shape (a triangle)"}]}

@@ -1,0 +1,30 @@
+#:exercise-set{:id :exercise-set/grade6.patterns.intro,
+               :title "Recognizing Number Sequences",
+               :grade-level 6,
+               :domain :patterns,
+               :skills #{:skill/patterns.identify-rule},
+               :blocks
+               [#:block{:title "Exercise 1",
+                        :type :multiple-choice,
+                        :prompt
+                        "What is the next number in this sequence: 1, 2, 4, 8, 16, 32, ...?",
+                        :options ["48" "64" "100" "128"],
+                        :answer "64"}
+                #:block{:title "Exercise 2",
+                        :type :multiple-choice,
+                        :prompt
+                        "Which of these sequences represents the Triangular Numbers?",
+                        :options
+                        ["1, 4, 9, 16, 25..."
+                         "1, 3, 6, 10, 15..."
+                         "2, 4, 6, 8, 10..."],
+                        :answer "1, 3, 6, 10, 15..."}
+                #:block{:title "Exercise 3",
+                        :type :multiple-choice,
+                        :prompt
+                        "What is the rule for forming the Odd Numbers sequence: 1, 3, 5, 7, 9...?",
+                        :options
+                        ["Multiply by 2"
+                         "Add 2 to the previous number"
+                         "Add 3 to the previous number"],
+                        :answer "Add 2 to the previous number"}]}

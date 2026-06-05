@@ -23,4 +23,92 @@
     "block/type" : "practice-ref",
     "exercise-set/id" : "exercise-set/grade1.addition.basic"
   } ]
+}, {
+  "lesson/id" : "lesson/grade6.patterns.visualizing",
+  "lesson/title" : "Visualising Number Sequences",
+  "lesson/grade-level" : 6,
+  "lesson/domain" : "patterns",
+  "lesson/concepts" : [ "concept/geometric-numbers", "concept/number-sequence" ],
+  "lesson/skills" : [ "skill/patterns.relate-sequences", "skill/patterns.visualize-numbers" ],
+  "lesson/blocks" : [ {
+    "block/title" : "Visualising Number Sequences",
+    "block/type" : "explain",
+    "block/body" : "Many number sequences can be visualised using pictures. Visualising mathematical objects through pictures or diagrams can be a very fruitful way to understand mathematical patterns and concepts."
+  }, {
+    "block/title" : "Square Numbers",
+    "block/type" : "explain",
+    "block/body" : "The sequence 1, 4, 9, 16, 25... is called \"Square numbers\". \nThis is because 4 dots can form a 2x2 square, 9 dots can form a 3x3 square, and 16 dots can form a 4x4 square!"
+  }, {
+    "block/title" : "Triangular Numbers",
+    "block/type" : "explain",
+    "block/body" : "The sequence 1, 3, 6, 10, 15... is called \"Triangular numbers\".\nIf you stack rows of dots starting with 1 dot on top, then 2 dots, then 3 dots... you form a triangle!\nRow 1 = 1\nRow 2 = 1 + 2 = 3\nRow 3 = 1 + 2 + 3 = 6"
+  }, {
+    "block/title" : "Dual Representation",
+    "block/type" : "example",
+    "block/prompt" : "Can a number be both a square and a triangle?",
+    "block/expression" : "Look at the number 36.",
+    "block/answer" : "Yes! 36 is 6x6 (a square) and it's also the 8th triangular number (1+2+3+4+5+6+7+8 = 36)."
+  }, {
+    "block/title" : "Relations among Number Sequences",
+    "block/type" : "explain",
+    "block/body" : "Sometimes, number sequences can be related to each other in surprising ways.\nWhat happens when we start adding up odd numbers?\n1 = 1\n1 + 3 = 4\n1 + 3 + 5 = 9\n1 + 3 + 5 + 7 = 16\n\nAdding up odd numbers gives you the Square Numbers! This beautiful pattern happens forever, and by drawing the dots in an L-shape around a square, you can visually prove it."
+  }, {
+    "block/title" : "Practice Time",
+    "block/type" : "practice-ref",
+    "block/exercise-set-id" : "exercise-set/grade6.patterns.visualizing"
+  } ]
+}, {
+  "lesson/id" : "lesson/grade6.patterns.intro",
+  "lesson/title" : "Introduction to Patterns in Numbers",
+  "lesson/grade-level" : 6,
+  "lesson/domain" : "patterns",
+  "lesson/concepts" : [ "concept/number-sequence" ],
+  "lesson/skills" : [ "skill/patterns.identify-rule" ],
+  "lesson/blocks" : [ {
+    "block/title" : "What is Mathematics?",
+    "block/type" : "explain",
+    "block/body" : "Mathematics is, in large part, the search for patterns, and for the explanations as to why those patterns exist. \nSuch patterns indeed exist all around us—in nature, in our homes and schools, and in the motion of the sun, moon, and stars. They occur in everything that we do and see, from shopping and cooking, to throwing a ball and playing games, to understanding weather patterns and using technology."
+  }, {
+    "block/title" : "Why do we study patterns?",
+    "block/type" : "explain",
+    "block/body" : "The search for patterns and their explanations can be a fun and creative endeavour. It is for this reason that mathematicians think of mathematics both as an art and as a science. \n\nIt is important to keep in mind that mathematics aims to not just find out what patterns exist, but also the explanations for why they exist. Such explanations can often then be used in applications well beyond the context in which they were discovered, which can then help to propel humanity forward."
+  }, {
+    "block/title" : "Patterns in Numbers",
+    "block/type" : "explain",
+    "block/body" : "Among the most basic patterns that occur in mathematics are patterns of numbers, particularly patterns of whole numbers:\n0, 1, 2, 3, 4, ...\n\nThe branch of Mathematics that studies patterns in whole numbers is called **number theory**. Number sequences are the most basic and among the most fascinating types of patterns that mathematicians study."
+  }, {
+    "block/title" : "Examples of Number Sequences",
+    "block/type" : "example",
+    "block/prompt" : "Can you identify these common number sequences?",
+    "block/expression" : "1, 2, 3, 4, 5, 6, 7, ...\n1, 3, 5, 7, 9, 11, 13, ...\n2, 4, 6, 8, 10, 12, 14, ...",
+    "block/answer" : "Counting numbers\nOdd numbers\nEven numbers"
+  }, {
+    "block/title" : "Time to Practice",
+    "block/type" : "practice-ref",
+    "block/exercise-set-id" : "exercise-set/grade6.patterns.intro"
+  } ]
+}, {
+  "lesson/id" : "lesson/grade6.patterns.shapes",
+  "lesson/title" : "Patterns in Shapes",
+  "lesson/grade-level" : 6,
+  "lesson/domain" : "patterns",
+  "lesson/concepts" : [ "concept/shape-sequence" ],
+  "lesson/skills" : [ "skill/patterns.shape-properties" ],
+  "lesson/blocks" : [ {
+    "block/title" : "Patterns in Shapes",
+    "block/type" : "explain",
+    "block/body" : "Other important and basic patterns that occur in Mathematics are patterns of shapes. These shapes may be in one, two, or three dimensions (1D, 2D, or 3D)—or in even more dimensions. The branch of Mathematics that studies patterns in shapes is called geometry."
+  }, {
+    "block/title" : "Shape Sequences",
+    "block/type" : "explain",
+    "block/body" : "Shape sequences are one important type of shape pattern that mathematicians study.\nA sequence of Regular Polygons looks like:\nTriangle (3 sides), Quadrilateral/Square (4 sides), Pentagon (5 sides), Hexagon (6 sides), Heptagon (7 sides), Octagon (8 sides), Nonagon (9 sides), Decagon (10 sides)."
+  }, {
+    "block/title" : "Relation to Number Sequences",
+    "block/type" : "explain",
+    "block/body" : "Often, shape sequences are related to number sequences in surprising ways. Such relationships can be helpful in studying and understanding both the shape sequence and the related number sequence.\n\nFor example, the number of sides in the shape sequence of Regular Polygons is given by the counting numbers starting at 3: \n3, 4, 5, 6, 7, 8, 9, 10...\n\nThe word ‘regular’ refers to the fact that these shapes have equal-length sides and also equal ‘angles’."
+  }, {
+    "block/title" : "Practice Time",
+    "block/type" : "practice-ref",
+    "block/exercise-set-id" : "exercise-set/grade6.patterns.shapes"
+  } ]
 } ]

@@ -4,11 +4,13 @@
 (def grades
   [{:id "grade1" :label "Grade 1"  :desc "Counting, addition, subtraction"}
    {:id "grade2" :label "Grade 2"  :desc "Place value, multiplication intro"}
-   {:id "grade5" :label "Grade 5"  :desc "Fractions, decimals, percentages"}])
+   {:id "grade5" :label "Grade 5"  :desc "Fractions, decimals, percentages"}
+   {:id "grade6" :label "Grade 6"  :desc "Patterns, number sequences, geometry"}])
 
 (defn grade-href [id]
   (case id
     "grade1" "#/lesson/grade1/addition"
+    "grade6" "#/lesson/grade6/patterns.intro"
     (href :grade {:grade id})))
 
 (defn home-page []

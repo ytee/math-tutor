@@ -68,7 +68,7 @@
 (defn exercise-refs-from-lesson [lesson]
   (->> (:lesson/blocks lesson)
        (filter #(= (:block/type %) :practice-ref))
-       (map :exercise-set/id)
+       (map #(or (:exercise-set/id %) (:block/exercise-set-id %)))
        set))
 
 (defn validate! [{:keys [domains concepts skills lessons exercise-sets]}]

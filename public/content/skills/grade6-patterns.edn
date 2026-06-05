@@ -1,0 +1,18 @@
+[
+  #:skill{:id :skill/patterns.identify-rule,
+          :domain :patterns,
+          :name "Identify Pattern Rules",
+          :description "Determine the mathematical rule that generates a sequence."}
+  #:skill{:id :skill/patterns.visualize-numbers,
+          :domain :patterns,
+          :name "Visualize Number Sequences",
+          :description "Translating numeric sequences into geometric shapes like grids and triangles."}
+  #:skill{:id :skill/patterns.relate-sequences,
+          :domain :patterns,
+          :name "Relate Sequences",
+          :description "Understand how combining sequences (like adding odd numbers) creates new sequences (like squares)."}
+  #:skill{:id :skill/patterns.shape-properties,
+          :domain :patterns,
+          :name "Analyze Shape Properties",
+          :description "Count sides or components of shapes to find mathematical patterns."}
+]

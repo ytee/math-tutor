@@ -7,4 +7,19 @@
 }, {
   "concept/id" : "concept/number",
   "concept/name" : "Number"
+}, {
+  "concept/id" : "concept/number-sequence",
+  "concept/domain" : "patterns",
+  "concept/name" : "Number Sequences",
+  "concept/description" : "A sequence of numbers following a specific mathematical rule."
+}, {
+  "concept/id" : "concept/geometric-numbers",
+  "concept/domain" : "patterns",
+  "concept/name" : "Geometric Numbers",
+  "concept/description" : "Numbers that can be arranged in geometric shapes (Triangular, Square)."
+}, {
+  "concept/id" : "concept/shape-sequence",
+  "concept/domain" : "patterns",
+  "concept/name" : "Shape Sequences",
+  "concept/description" : "Sequences where shapes follow a geometric pattern or rule."
 } ]

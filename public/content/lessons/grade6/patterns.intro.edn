@@ -1,0 +1,31 @@
+#:lesson{:id :lesson/grade6.patterns.intro,
+         :title "Introduction to Patterns in Numbers",
+         :grade-level 6,
+         :domain :patterns,
+         :concepts #{:concept/number-sequence},
+         :skills #{:skill/patterns.identify-rule},
+         :blocks
+         [#:block{:title "What is Mathematics?",
+                  :type :explain,
+                  :body
+                  "Mathematics is, in large part, the search for patterns, and for the explanations as to why those patterns exist. \nSuch patterns indeed exist all around us—in nature, in our homes and schools, and in the motion of the sun, moon, and stars. They occur in everything that we do and see, from shopping and cooking, to throwing a ball and playing games, to understanding weather patterns and using technology."}
+          #:block{:title "Why do we study patterns?",
+                  :type :explain,
+                  :body
+                  "The search for patterns and their explanations can be a fun and creative endeavour. It is for this reason that mathematicians think of mathematics both as an art and as a science. \n\nIt is important to keep in mind that mathematics aims to not just find out what patterns exist, but also the explanations for why they exist. Such explanations can often then be used in applications well beyond the context in which they were discovered, which can then help to propel humanity forward."}
+          #:block{:title "Patterns in Numbers",
+                  :type :explain,
+                  :body
+                  "Among the most basic patterns that occur in mathematics are patterns of numbers, particularly patterns of whole numbers:\n0, 1, 2, 3, 4, ...\n\nThe branch of Mathematics that studies patterns in whole numbers is called **number theory**. Number sequences are the most basic and among the most fascinating types of patterns that mathematicians study."}
+          #:block{:title "Examples of Number Sequences",
+                  :type :example,
+                  :prompt
+                  "Can you identify these common number sequences?",
+                  :expression
+                  "1, 2, 3, 4, 5, 6, 7, ...\n1, 3, 5, 7, 9, 11, 13, ...\n2, 4, 6, 8, 10, 12, 14, ...",
+                  :answer
+                  "Counting numbers\nOdd numbers\nEven numbers"}
+          #:block{:title "Time to Practice",
+                  :type :practice-ref,
+                  :exercise-set-id
+                  :exercise-set/grade6.patterns.intro}]}
