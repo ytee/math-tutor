@@ -187,6 +187,15 @@
     (write-json! "public/compiled/exercises.json" exercise-sets)
     (write-json! "public/compiled/grade1-addition-demo.json" demo)
 
+    (doseq [lesson lessons]
+      (let [lesson-name (name (:lesson/id lesson))
+            bundle-name (clojure.string/replace-first lesson-name "." "-")
+            refs (exercise-refs-from-lesson lesson)
+            lesson-exercises (filter #(contains? refs (:exercise-set/id %)) exercise-sets)
+            bundle {:lesson lesson
+                    :exercise-sets lesson-exercises}]
+        (write-json! (str "public/compiled/" bundle-name ".json") bundle)))
+
     (println "Build complete.")
     (println "Generated files in public/compiled/")))
 

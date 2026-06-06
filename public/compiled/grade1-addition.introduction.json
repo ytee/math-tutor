@@ -1,0 +1,61 @@
+{
+  "lesson" : {
+    "lesson/id" : "lesson/grade1.addition.introduction",
+    "lesson/title" : "Introduction to Addition",
+    "lesson/grade-level" : 1,
+    "lesson/domain" : "arithmetic",
+    "lesson/concepts" : [ "concept/addition", "concept/counting", "concept/number" ],
+    "lesson/skills" : [ "skill/arithmetic.add-within-10", "skill/arithmetic.count-objects", "skill/arithmetic.add-using-pictures" ],
+    "lesson/blocks" : [ {
+      "block/id" : "block/grade1.addition.meaning",
+      "block/type" : "explain",
+      "block/title" : "What is addition?",
+      "block/body" : "Addition means putting things together and finding how many there are in all."
+    }, {
+      "block/id" : "block/grade1.addition.example-1",
+      "block/type" : "example",
+      "block/title" : "Example",
+      "block/prompt" : "There are 2 apples. Then 1 more apple is added. How many apples are there?",
+      "block/expression" : "2 + 1 = 3",
+      "block/answer" : 3,
+      "block/explanation" : "Count all the apples: 1, 2, 3."
+    }, {
+      "block/id" : "block/grade1.addition.practice",
+      "block/type" : "practice-ref",
+      "exercise-set/id" : "exercise-set/grade1.addition.basic"
+    } ]
+  },
+  "exercise-sets" : [ {
+    "exercise-set/id" : "exercise-set/grade1.addition.basic",
+    "exercise-set/title" : "Basic Addition Within 10",
+    "exercise-set/grade-level" : 1,
+    "exercise-set/skills" : [ "skill/arithmetic.add-within-10", "skill/arithmetic.add-using-pictures" ],
+    "exercise-set/items" : [ {
+      "exercise/id" : "exercise/grade1.addition.basic.001",
+      "exercise/type" : "numeric-answer",
+      "exercise/prompt" : "1 + 1 = ?",
+      "exercise/answer" : 2,
+      "exercise/explanation" : "One and one make two."
+    }, {
+      "exercise/id" : "exercise/grade1.addition.basic.002",
+      "exercise/type" : "numeric-answer",
+      "exercise/prompt" : "2 + 1 = ?",
+      "exercise/answer" : 3,
+      "exercise/explanation" : "Two and one more make three."
+    }, {
+      "exercise/id" : "exercise/grade1.addition.basic.003",
+      "exercise/type" : "numeric-answer",
+      "exercise/prompt" : "3 + 2 = ?",
+      "exercise/answer" : 5,
+      "exercise/explanation" : "Three and two more make five."
+    }, {
+      "exercise/id" : "exercise/grade1.addition.basic.004",
+      "exercise/type" : "count-and-add",
+      "exercise/prompt" : "There are 2 stars and 3 more stars. How many stars are there?",
+      "exercise/groups" : [ 2, 3 ],
+      "exercise/object" : "star",
+      "exercise/answer" : 5,
+      "exercise/explanation" : "Count all the stars: 1, 2, 3, 4, 5."
+    } ]
+  } ]
+}
