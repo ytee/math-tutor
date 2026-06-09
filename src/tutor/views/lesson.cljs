@@ -126,30 +126,53 @@
 
 (defn- check-answer! [exercise-id correct-answer]
   (let [user-answer (get-in @app-state [:answers exercise-id])
-        parsed      (parse-int-safe user-answer)
-        correct?    (= parsed correct-answer)]
+        correct?    (if (string? correct-answer)
+                      (= (str user-answer) correct-answer)
+                      (= (parse-int-safe user-answer) correct-answer))]
     (swap! app-state assoc-in [:results exercise-id] correct?)))
 
 (defn- exercise-item [item]
-  (let [exercise-id (:exercise/id item)
+  (let [exercise-id (or (:exercise/id item) (:block/title item))
+        prompt      (or (:exercise/prompt item) (:block/prompt item))
+        answer      (or (:exercise/answer item) (:block/answer item))
+        explanation (or (:exercise/explanation item) (:block/explanation item))
+        options     (:block/options item)
         current     (get-in @app-state [:answers exercise-id] "")
         result      (get-in @app-state [:results exercise-id])]
     [:div.exercise
-     [:p [:strong (:exercise/prompt item)]]
+     [:p [:strong prompt]]
 
-     [:input
-      {:type        "number"
-       :value       current
-       :placeholder "Your answer"
-       :on-change
-       (fn [e]
-         (swap! app-state assoc-in
-                [:answers exercise-id]
-                (.. e -target -value)))}]
+     (if options
+       ;; Render multiple choice
+       [:div.options
+        (for [opt options]
+          ^{:key opt}
+          [:div
+           [:label
+            [:input {:type "radio"
+                     :name exercise-id
+                     :value opt
+                     :checked (= current opt)
+                     :on-change
+                     (fn [e]
+                       (swap! app-state assoc-in
+                              [:answers exercise-id]
+                              (.. e -target -value)))}]
+            " " opt]])]
+       ;; Render number input
+       [:input
+        {:type        "number"
+         :value       current
+         :placeholder "Your answer"
+         :on-change
+         (fn [e]
+           (swap! app-state assoc-in
+                  [:answers exercise-id]
+                  (.. e -target -value)))}])
 
      [:button.btn
       {:style    {:margin-left "0.5rem"}
-       :on-click #(check-answer! exercise-id (:exercise/answer item))}
+       :on-click #(check-answer! exercise-id answer)}
       "Check"]
 
      (when (some? result)
@@ -157,14 +180,14 @@
         (if result
           [:p.correct "Correct!"]
           [:p.error "Try again."])
-        (when (:exercise/explanation item)
-          [:p.hint (:exercise/explanation item)])])]))
+        (when explanation
+          [:p.hint explanation])])]))
 
 (defn- exercise-set-view [exercise-set]
   [:div.section
    [:h2 (:exercise-set/title exercise-set)]
-   (for [item (:exercise-set/items exercise-set)]
-     ^{:key (:exercise/id item)}
+   (for [item (or (:exercise-set/items exercise-set) (:exercise-set/blocks exercise-set))]
+     ^{:key (or (:exercise/id item) (:block/title item))}
      [exercise-item item])])
 
 ;; ── Page ─────────────────────────────────────────────────────────────────────
